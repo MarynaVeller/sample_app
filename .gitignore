@@ -20,3 +20,5 @@ doc/
 .project
 .idea
 /.bundle
+/.bundle-stubs
+/.bundler-stubs
