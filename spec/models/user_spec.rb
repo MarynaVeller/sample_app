@@ -115,5 +115,17 @@ describe User do
 	    it { should_not == user_for_invalid_password }
 	    specify { user_for_invalid_password.should be_false }
 	  end
-end
+
+	  describe "saved with downcasted email" do
+	  	let(:upcase_email) { "FOO@SMTH.com"}
+	  	 before do
+	  	 	@user.email = upcase_email
+	  	 	@user.save
+	  	 	@user.reload
+	  	 end
+	  	 it{ @user.email.should == upcase_email.downcase }
+	  	 
+	  end
+
+	end
 end
