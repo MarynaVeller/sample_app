@@ -25,9 +25,15 @@ describe "User Pages" do
 
 		describe "with invalid information" do
       		it "should not create a user" do
-        	expect { click_button submit }.not_to change(User, :count)
+        		expect { click_button submit }.not_to change(User, :count)
       		end
-    	end		
+      		before {click_button submit}
+      		it "should contain error " do
+      			should have_content ("error")
+      		end
+
+    	end	
+
 		
 		describe "with valid information" do
       		before do
@@ -38,7 +44,13 @@ describe "User Pages" do
 			end	
 		    it "should create a user" do
         		expect { click_button submit }.to change(User, :count).by(1)
+        		should have_content ("Welcome")
+        		should have_content(User.name) 
+        		should have_link('Sign Out')
       		end
+
 		end	
+
+
 	end
 end
